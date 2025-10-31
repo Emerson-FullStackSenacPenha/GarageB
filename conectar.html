@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="img/logo.jpg" />
+    <title>GarageB - O Site Oficial da Banda</title>
+</head>
+
+<body id="conectar_pag">
+
+    <!-- Cabeçalho -->
+    <header>
+        <div id="cabecalho">
+            <div class="logo"></div>
+            <nav class="menu-site menu-desktop">
+                <a href="index.html">Voltar</a>
+            </nav>
+            
+            <button class="menu-hamburguer" aria-label="Abrir Menu">
+                &#9776; </button>
+
+            <nav class="menu-mobile">
+                <a href="index.html">Voltar</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- Conteudo do programa -->
+    <main class="login-section" >
+
+
+    </main>
+
+
+
+    <!-- Rodapé -->
+    <footer>
+
+        <p id="texto_rodape">&copy; 2025 GarageB. Todos os direitos reservados.</p>
+
+    </footer>
+
+    <!-- Menu Hamburguer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuHamburguer = document.querySelector('.menu-hamburguer');
+            const menuMobile = document.querySelector('.menu-mobile');
+
+            menuHamburguer.addEventListener('click', () => {
+                menuMobile.classList.toggle('active');
+            });
+
+            // Fecha o menu móvel ao clicar em um link (para facilitar a navegação)
+            document.querySelectorAll('.menu-mobile a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuMobile.classList.remove('active');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
