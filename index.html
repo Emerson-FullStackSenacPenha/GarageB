@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="icon" href="img/logo.jpg" />
     <title>GarageB - O Site Oficial da Banda</title>
 </head>
+
 <body>
 
     <!-- Cabeçalho -->
@@ -18,7 +20,7 @@
                 <a href="#integrantes">Integrantes</a>
                 <a href="#sobre">A GarageB</a>
                 <a href="#insta">Instagram</a>
-                <a href="conectar.html">Conectar</a> 
+                <a href="conectar.html">Conectar</a>
             </nav>
         </div>
     </header>
@@ -29,7 +31,7 @@
         <div class="slide active">
             <img class="foto_carrossel" src="img/carrossel/foto_1.jpg" alt="GarageB no Palco">
         </div>
-        
+
         <div class="slide active">
             <img class="foto_carrossel" src="img/carrossel/foto_2.jpg" alt="GarageB no Palco">
         </div>
@@ -54,45 +56,77 @@
 
     <!-- Integrantes -->
     <section id="integrantes" class="integrantes-secao">
-        <div class="container">
-            <h3>Nossos Integrantes</h3>
-            <div class="fotos-integrantes">
-                
-                <figure class="foto-box">
-                <a href="">imagem1</a>
-                <figcaption>Barba</figcaption>
-                </figure>
 
-                <figure class="foto-box">
-                <a href="">imagem1</a>
+        <h3>Integrantes</h3>
+
+        <div class="fotos-integrantes">
+
+            <figure class="foto-box">
+
+                <a href="https://www.instagram.com/38w_berserker/">
+
+                    <img class="foto_integrantes" src="img/solo.jpg" alt="foto do guitarrista soslo">
+                    <figcaption>Barba</figcaption>
+
+                </a>
+
+            </figure>
+
+            <figure class="foto-box">
+
+                <a href="https://www.instagram.com/rodrigo.arcoverde/">
+
+                    <img class="foto_integrantes" src="img/bass.jpg" alt="foto do baixista">
                 <figcaption>Chicó</figcaption>
-                </figure>
 
-                <figure class="foto-box">
-                <a href="">imagem1</a>
+                </a>
+
+            </figure>
+
+            <figure class="foto-box">
+
+                <a href="https://www.instagram.com/ratodelio/">
+                
+                    <img class="foto_integrantes" src="img/vocal" alt="foto do vocalista">
                 <figcaption>Roger</figcaption>
-                </figure>
 
-                <figure class="foto-box">
-                <a href="">imagem1</a>
-                <figcaption>Jerms</figcaption>
-                </figure>
+                </a>
 
-                <figure class="foto-box">
-                <a href="">imagem1</a>
-                <figcaption>Edu</figcaption>
-                </figure>
-
-            </div>
+            </figure>
             
+            <figure class="foto-box">
+
+                <a href="https://www.instagram.com/e.andradeperfil/">
+                
+                    <img class="foto_integrantes" src="img/batera.png" alt="foto do vocalista">
+                <figcaption>Jerms</figcaption>
+
+                </a>
+
+            </figure>
+
+            <figure class="foto-box">
+
+                <a href="https://www.instagram.com/eduardo_figueiro/">
+                
+                    <img class="foto_integrantes" src="img/guitar.png" alt="foto do Guitarrista">
+                <figcaption>Edu</figcaption>
+
+                </a>
+
+            </figure>
+
         </div>
+        
     </section>
 
     <!-- História da banda -->
     <section id="sobre" class="sobre-secao">
         <div class="container">
             <h3>Sobre a História da Banda</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, tenetur similique et corporis asperiores a blanditiis exercitationem nemo, nobis sunt totam dignissimos autem quos voluptatum! Esse deleniti sapiente adipisci dolores.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, tenetur similique et corporis asperiores a
+                blanditiis exercitationem nemo, nobis sunt totam dignissimos autem quos voluptatum! Esse deleniti
+                sapiente adipisci dolores.</p>
         </div>
     </section>
 
@@ -108,26 +142,26 @@
 
     <!-- Cabeçalho -->
     <footer>
-        
-            <div class="social-icons">
-                <a href="[LINK_INSTAGRAM]" target="_blank">📷 Instagram</a> 
-                <a href="[LINK_WHATSAPP]" target="_blank">💬 WhatsApp</a>
-            </div>
-            <p id="texto_rodape">&copy; 2025 GarageB. Todos os direitos reservados.</p>
-        
+
+        <div class="social-icons">
+            <a href="[LINK_INSTAGRAM]" target="_blank">📷 Instagram</a>
+            <a href="[LINK_WHATSAPP]" target="_blank">💬 WhatsApp</a>
+        </div>
+        <p id="texto_rodape">&copy; 2025 GarageB. Todos os direitos reservados.</p>
+
     </footer>
 
     <!-- Carrossel -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const slides = document.querySelectorAll('.slide');
             let currentSlide = 0;
-            
+
             // Função para mostrar um slide específico
             function showSlide(index) {
                 // Remove a classe 'active' de todos os slides
                 slides.forEach(slide => slide.classList.remove('active'));
-                
+
                 // Adiciona a classe 'active' ao slide desejado
                 slides[index].classList.add('active');
             }
@@ -142,9 +176,10 @@
             showSlide(currentSlide);
 
             // Define um intervalo para trocar os slides a cada 5 segundos (5000ms)
-            setInterval(nextSlide, 5000); 
+            setInterval(nextSlide, 5000);
         });
     </script>
 
 </body>
+
 </html>
