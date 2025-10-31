@@ -172,30 +172,31 @@ body {
     line-height: 1.6;
 }
 
-
 .instagram-feed {
 
-            
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            
-        }
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 
-        .instagram-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1vw;
-        }
-        
-        .instagram-gallery blockquote {
-            
-             max-width: 100% !important; 
-             min-width: 0 !important;
-        }
-        
+}
+
+.instagram-gallery {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1vw;
+
+}
+
+.instagram-gallery blockquote {
+
+    max-width: 100% !important;
+    min-width: 0 !important;
+
+}
+
 footer {
 
     background-color: black;
