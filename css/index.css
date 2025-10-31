@@ -1,0 +1,126 @@
+* {
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+    color: #333;
+
+}
+
+#cabecalho {
+
+    background-color: black;
+    color: white;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 50px;
+
+}
+
+.container {
+
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+
+}
+
+.logo {
+
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: 10px;
+    
+}
+
+.menu-site {
+
+    display: flex;
+    gap: 10px;
+    margin-right: 10px;
+
+}
+
+.menu-site a {
+
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.slider-fotos {
+    background-color: #cccccc;
+    /* Cor do wireframe (cinza claro) */
+    padding: 100px 0;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.integrantes-secao {
+    background-color: #e0e0e0;
+    /* Cinza um pouco mais escuro */
+    padding: 40px 0;
+    text-align: center;
+}
+
+.fotos-integrantes {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.foto-box {
+    background-color: #999999;
+    /* Cinza da foto */
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+}
+
+.sobre-secao {
+    padding: 40px 0;
+    line-height: 1.6;
+}
+
+footer {
+
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    
+}
+
+.social-icons a {
+    
+    text-decoration: none;
+    color: white;
+
+}
+
+#texto_rodape {
+    
+    color: white;
+
+}
