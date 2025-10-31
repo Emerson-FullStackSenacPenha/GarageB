@@ -31,13 +31,31 @@
         </div>
     </header>
 
-
     <!-- Conteudo do programa -->
     <main  class="radio-selection-section">
         
+        <h1 class="page-title">Escolha o Seu Canal de Rock</h1>
+        
+        <div class="channel-selector">
+            <button id="btn-casa" class="btn-channel active" data-channel="casa">🏠 Rádio Casa</button>
+            <button id="btn-rua" class="btn-channel" data-channel="rua">🛣️ Rádio Rua</button>
+        </div>
+
+        <div class="player-container">
+            <h2 id="channel-title">Rádio Casa: Classic Rock</h2>
+            <p id="channel-description">O melhor do Classic Rock, Blues e Folk. Música para relaxar.</p>
+
+            <audio id="audio-player" controls preload="none">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+
+            <div class="stream-info">
+                <p>Status: <span id="status-message">Carregando...</span></p>
+                <p>Streaming: <span id="stream-url"></span></p>
+            </div>
+        </div>
+
     </main>
-
-
 
     <!-- Rodapé -->
     <footer>
@@ -62,6 +80,74 @@
                     menuMobile.classList.remove('active');
                 });
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Elementos DOM
+            const btnCasa = document.getElementById('btn-casa');
+            const btnRua = document.getElementById('btn-rua');
+            const audioPlayer = document.getElementById('audio-player');
+            const channelTitle = document.getElementById('channel-title');
+            const channelDescription = document.getElementById('channel-description');
+            const statusMessage = document.getElementById('status-message');
+            const streamUrlSpan = document.getElementById('stream-url');
+            const channelButtons = document.querySelectorAll('.btn-channel');
+
+            // Configuração das Rádios (Links de streaming são SIMULADOS)
+            const radios = {
+                casa: {
+                    title: "Rádio Casa: Classic Rock",
+                    description: "O melhor do Classic Rock, Blues e Folk. Música para relaxar.",
+                    // Substitua 'SUA_URL_STREAMING_CASA' pelo link real do seu streaming
+                    stream: "SUA_URL_STREAMING_CASA_MP3_OU_M3U8" 
+                },
+                rua: {
+                    title: "Rádio Rua: Hard & Heavy",
+                    description: "Hard Rock, Metal e Grunge. Para aumentar o volume e pegar a estrada!",
+                    // Substitua 'SUA_URL_STREAMING_RUA' pelo link real do seu streaming
+                    stream: "SUA_URL_STREAMING_RUA_MP3_OU_M3U8"
+                }
+            };
+
+            // Função principal para carregar o canal
+            function loadChannel(channelKey) {
+                const radio = radios[channelKey];
+                
+                // 1. Atualiza o player de áudio
+                audioPlayer.src = radio.stream;
+                audioPlayer.load(); // Carrega o novo stream
+                statusMessage.textContent = 'Pronto para tocar.';
+
+                // 2. Atualiza os metadados
+                channelTitle.textContent = radio.title;
+                channelDescription.textContent = radio.description;
+                streamUrlSpan.textContent = radio.stream; 
+
+                // 3. Atualiza o estado dos botões (CSS)
+                channelButtons.forEach(btn => btn.classList.remove('active'));
+                document.getElementById('btn-' + channelKey).classList.add('active');
+            }
+
+            // Event Listeners para os botões
+            btnCasa.addEventListener('click', () => loadChannel('casa'));
+            btnRua.addEventListener('click', () => loadChannel('rua'));
+
+            // Atualiza o status do player (opcional, mas bom para feedback)
+            audioPlayer.addEventListener('play', () => {
+                statusMessage.textContent = 'Tocando agora...';
+            });
+            audioPlayer.addEventListener('pause', () => {
+                statusMessage.textContent = 'Pausado.';
+            });
+            audioPlayer.addEventListener('error', () => {
+                statusMessage.textContent = 'Erro ao carregar o stream. Link inválido?';
+                statusMessage.style.color = 'red';
+            });
+
+            // Carrega o canal padrão ao iniciar
+            loadChannel('casa');
         });
     </script>
 

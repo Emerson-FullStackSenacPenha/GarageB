@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="img/logo.jpg" />
-    <title>GarageB - O Site Oficial da Banda</title>
+    <title>GarageB - Painel do Radialista</title>
 </head>
 
 <body id="conectar_pag">
 
-    <!-- Cabeçalho -->
     <header>
         <div id="cabecalho">
             <div class="logo"></div>
@@ -20,48 +19,88 @@
                 <a href="index.html">Home</a>
             </nav>
             
-            <button class="menu-hamburguer" aria-label="Abrir Menu">
-                &#9776; </button>
+            <button class="menu-hamburguer" aria-label="Abrir Menu">&#9776;</button>
 
             <nav class="menu-mobile">
                 <a href="conectar.html">Voltar</a>
                 <a href="index.html">Home</a>
             </nav>
-
         </div>
     </header>
 
-
-    <!-- Conteudo do programa -->
-    <main  class="radio-selection-section">
+    <main class="admin-panel-section">
         
+        <h1 class="page-title">Painel de Controle do Radialista</h1>
+        
+        <div class="channel-management-container">
+            
+            <div class="management-box casa">
+                <h3>🏠 Gerenciar Rádio Casa</h3>
+                <p>Status: <span class="status-indicator active">Online</span></p>
+                <div class="playlist-info">
+                    <h4>Playlist Atual:</h4>
+                    <ul>
+                        <li>🎶 Led Zeppelin - Stairway to Heaven</li>
+                        <li>🎶 Pink Floyd - Comfortably Numb</li>
+                        <li>🎶 Eric Clapton - Layla</li>
+                    </ul>
+                </div>
+                <button class="btn-action primary">Atualizar Playlist</button>
+                <button class="btn-action warning">Reiniciar Stream</button>
+            </div>
+
+            <div class="management-box rua">
+                <h3>🛣️ Gerenciar Rádio Rua</h3>
+                <p>Status: <span class="status-indicator maintenance">Manutenção</span></p>
+                <div class="playlist-info">
+                    <h4>Playlist Atual:</h4>
+                    <ul>
+                        <li>🤘 Metallica - Master of Puppets</li>
+                        <li>🤘 Iron Maiden - The Trooper</li>
+                        <li>🤘 Guns N' Roses - Welcome to the Jungle</li>
+                    </ul>
+                </div>
+                <button class="btn-action primary">Atualizar Playlist</button>
+                <button class="btn-action warning">Reiniciar Stream</button>
+            </div>
+            
+        </div>
+        
+        <p class="admin-note">
+            ⚠️ **Nota:** Esta é uma interface de simulação. Funções de gerenciamento reais (backend) não estão ativas.
+        </p>
+
     </main>
 
 
-
-    <!-- Rodapé -->
     <footer>
-
         <p id="texto_rodape">&copy; 2025 GarageB. Todos os direitos reservados.</p>
-
     </footer>
 
-    <!-- Menu Hamburguer -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const menuHamburguer = document.querySelector('.menu-hamburguer');
             const menuMobile = document.querySelector('.menu-mobile');
 
-            menuHamburguer.addEventListener('click', () => {
-                menuMobile.classList.toggle('active');
-            });
+            if (menuHamburguer && menuMobile) {
+                menuHamburguer.addEventListener('click', () => {
+                    menuMobile.classList.toggle('active');
+                });
 
-            // Fecha o menu móvel ao clicar em um link (para facilitar a navegação)
-            document.querySelectorAll('.menu-mobile a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuMobile.classList.remove('active');
+                document.querySelectorAll('.menu-mobile a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuMobile.classList.remove('active');
+                    });
+                });
+            }
+            
+            // Simulação de Ação dos Botões (Opcional)
+            document.querySelectorAll('.btn-action').forEach(button => {
+                button.addEventListener('click', function() {
+                    alert(`Simulando ação: ${this.textContent}`);
                 });
             });
+
         });
     </script>
 
