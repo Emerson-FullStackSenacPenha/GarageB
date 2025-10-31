@@ -18,6 +18,8 @@ body {
     
 }
 
+
+
 #cabecalho {
 
     background-color: black;
@@ -221,5 +223,116 @@ footer {
 #texto_rodape {
 
     color: var(--cor_texto);
+
+}
+
+/* --- Novo CSS para Responsividade (Menu Hambúrguer) --- */
+
+/* Esconde o menu hamburguer e o menu mobile por padrão no desktop */
+.menu-hamburguer, .menu-mobile {
+    display: none;
+}
+
+/* Estilo do ícone hambúrguer quando ativo (Mobile) */
+.menu-hamburguer {
+    background: none;
+    border: none;
+    color: var(--cor_texto); /* Cor definida na sua root */
+    font-size: 2em;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+/* Estilo do menu móvel (lateral) */
+.menu-mobile {
+    position: fixed;
+    top: 50px; /* Abaixo do cabeçalho */
+    right: 0;
+    width: 250px;
+    height: calc(100vh - 50px); /* Altura total menos o cabeçalho */
+    background-color: #111; /* Fundo escuro */
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    
+    /* Inicialmente oculto com transição suave */
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out;
+}
+
+/* O Menu mobile é exibido quando a classe 'active' é adicionada via JS */
+.menu-mobile.active {
+    transform: translateX(0);
+}
+
+.menu-mobile a {
+    color: var(--cor_texto);
+    text-decoration: none;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    text-align: left;
+}
+
+/* Estilos de responsividade para a Galeria e Integrantes */
+/* Estilos de responsividade para a Galeria e Integrantes */
+@media (max-width: 768px) {
+    
+    /* Oculta o menu de desktop e mostra o menu hamburguer */
+    .menu-desktop {
+        display: none;
+    }
+
+    .menu-hamburguer {
+        display: block; /* Mudei para 'block' ou mantenha 'flex' para o botão */
+    }
+    
+    /* CORREÇÃO CRÍTICA: Define o display para que ele possa ser posicionado. 
+       No desktop ele está como 'display: none' no bloco fora do media query. */
+    .menu-mobile {
+        display: flex; /* Adiciona o display: flex para que o menu apareça */
+    }
+
+    /* Ajusta a exibição dos Integrantes para mobile */
+    .fotos-integrantes {
+        
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+    }
+    
+    /* Ajusta o grid do Instagram para 2 colunas no mobile */
+    .instagram-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;
+    }
+
+    /* Garante que o cabeçalho preencha a tela */
+    #cabecalho {
+        justify-content: space-between;
+    }
+
+    
+
+}
+
+@media (max-width: 480px) {
+    /* Ajusta o grid do Instagram para 1 coluna em telas muito pequenas */
+    .instagram-gallery {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+
+    /* Ajuste de altura Específico para Mobile */
+    .slider-container {
+        height: 40vh; /* Altura reduzida para mobile (40% da altura da tela) */
+    }
+    
+    /* Ajusta o grid do Instagram para 1 coluna em telas muito pequenas */
+    .instagram-gallery {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
 
 }

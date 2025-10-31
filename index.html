@@ -15,13 +15,25 @@
     <header>
         <div id="cabecalho">
             <div class="logo"></div>
-            <nav class="menu-site">
+            <nav class="menu-site menu-desktop">
                 <a href="#topo">Inicio</a>
                 <a href="#integrantes">Integrantes</a>
                 <a href="#sobre">A GarageB</a>
                 <a href="#insta">Instagram</a>
                 <a href="conectar.html">Conectar</a>
             </nav>
+            
+            <button class="menu-hamburguer" aria-label="Abrir Menu">
+                &#9776; </button>
+
+            <nav class="menu-mobile">
+                <a href="#topo">Inicio</a>
+                <a href="#integrantes">Integrantes</a>
+                <a href="#sobre">A GarageB</a>
+                <a href="#insta">Instagram</a>
+                <a href="conectar.html">Conectar</a>
+            </nav>
+
         </div>
     </header>
 
@@ -234,15 +246,31 @@
     <!-- Cabeçalho -->
     <footer>
 
-        <div class="social-icons">
-            <a href="[LINK_INSTAGRAM]" target="_blank">📷 Instagram</a>
-            <a href="[LINK_WHATSAPP]" target="_blank">💬 WhatsApp</a>
-        </div>
         <p id="texto_rodape">&copy; 2025 GarageB. Todos os direitos reservados.</p>
 
     </footer>
 
+    <!-- API Instagram -->
     <script async src="//www.instagram.com/embed.js"></script>
+
+    <!-- Menu Hamburguer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuHamburguer = document.querySelector('.menu-hamburguer');
+            const menuMobile = document.querySelector('.menu-mobile');
+
+            menuHamburguer.addEventListener('click', () => {
+                menuMobile.classList.toggle('active');
+            });
+
+            // Fecha o menu móvel ao clicar em um link (para facilitar a navegação)
+            document.querySelectorAll('.menu-mobile a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuMobile.classList.remove('active');
+                });
+            });
+        });
+    </script>
 
     <!-- Carrossel -->
     <script>
