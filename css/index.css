@@ -1,3 +1,9 @@
+:root{
+
+    --cor_texto:#DFD0A5;
+
+}
+
 * {
 
     padding: 0;
@@ -10,7 +16,6 @@ body {
 
     font-family: sans-serif;
     margin: 0;
-    background-color: #f0f0f0;
     color: #333;
 
 }
@@ -24,9 +29,8 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     height: 50px;
-
+    
 }
 
 .container {
@@ -45,19 +49,25 @@ body {
     font-weight: bold;
     margin-left: 10px;
     
+    background-image: url(../img/logo2.png);
+    height: 35px;
+    width: 150px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
 }
 
 .menu-site {
 
     display: flex;
-    gap: 10px;
-    margin-right: 10px;
+    gap: 20px;
+    margin-right: 20px;
 
 }
 
 .menu-site a {
 
-    color: white;
+    color: var(--cor_texto);
     text-decoration: none;
     font-weight: 600;
 
@@ -115,12 +125,12 @@ footer {
 .social-icons a {
     
     text-decoration: none;
-    color: white;
+    color: var(--cor_texto)
 
 }
 
 #texto_rodape {
     
-    color: white;
+    color: var(--cor_texto);
 
 }
