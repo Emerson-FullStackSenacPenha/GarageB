@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="img/logo.jpg" />
     <title>GarageB - O Site Oficial da Banda</title>
 </head>
 <body>
@@ -22,11 +23,32 @@
     </header>
 
     <!-- Carrossel -->
-    <section class="slider-fotos">
-        <div class="container">
-            <h2>Slider de fotos carrossel</h2>
-            <p>Em breve, fotos dinâmicas da banda e shows!</p>
+    <section class="slider-container">
+
+        <div class="slide active">
+            <img class="foto_carrossel" src="img/carrossel/foto_1.jpg" alt="GarageB no Palco">
         </div>
+        
+        <div class="slide active">
+            <img class="foto_carrossel" src="img/carrossel/foto_2.jpg" alt="GarageB no Palco">
+        </div>
+
+        <div class="slide active">
+            <img class="foto_carrossel" src="img/carrossel/foto_3.jpg" alt="GarageB no Palco">
+        </div>
+
+        <div class="slide active">
+            <img class="foto_carrossel" src="img/carrossel/foto_4.jpg" alt="GarageB no Palco">
+        </div>
+
+        <div class="slide active">
+            <img class="foto_carrossel" src="img/carrossel/foto_5.jpg" alt="GarageB no Palco">
+        </div>
+
+        <div class="slide active">
+            <img class="foto_carrossel" src="img/carrossel/foto_6.jpeg" alt="GarageB no Palco">
+        </div>
+
     </section>
 
     <!-- Integrantes -->
@@ -93,6 +115,35 @@
             <p id="texto_rodape">&copy; 2025 GarageB. Todos os direitos reservados.</p>
         
     </footer>
+
+    <!-- Carrossel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            
+            // Função para mostrar um slide específico
+            function showSlide(index) {
+                // Remove a classe 'active' de todos os slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                
+                // Adiciona a classe 'active' ao slide desejado
+                slides[index].classList.add('active');
+            }
+
+            // Função para ir para o próximo slide
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            // Exibe o primeiro slide ao carregar a página
+            showSlide(currentSlide);
+
+            // Define um intervalo para trocar os slides a cada 5 segundos (5000ms)
+            setInterval(nextSlide, 5000); 
+        });
+    </script>
 
 </body>
 </html>

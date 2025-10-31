@@ -1,6 +1,6 @@
-:root{
+:root {
 
-    --cor_texto:#DFD0A5;
+    --cor_texto: #DFD0A5;
 
 }
 
@@ -24,13 +24,13 @@ body {
 
     background-color: black;
     color: white;
-    
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 50px;
-    
+
 }
 
 .container {
@@ -38,7 +38,7 @@ body {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
 
 }
@@ -48,7 +48,7 @@ body {
     font-size: 2em;
     font-weight: bold;
     margin-left: 10px;
-    
+
     background-image: url(../img/logo2.png);
     height: 35px;
     width: 150px;
@@ -73,12 +73,44 @@ body {
 
 }
 
-.slider-fotos {
-    background-color: #cccccc;
-    /* Cor do wireframe (cinza claro) */
-    padding: 100px 0;
-    text-align: center;
-    font-size: 1.5em;
+.foto_carrossel {
+
+    
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
+
+/* 2. Carrossel Automático */
+.slider-container {
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.slide {
+
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    
+}
+
+.slide.active {
+    display: block;
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .integrantes-secao {
@@ -119,18 +151,17 @@ footer {
     justify-content: space-around;
     align-items: center;
     height: 50px;
-    
+
 }
 
 .social-icons a {
-    
+
     text-decoration: none;
     color: var(--cor_texto)
-
 }
 
 #texto_rodape {
-    
+
     color: var(--cor_texto);
 
 }
