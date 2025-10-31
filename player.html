@@ -11,7 +11,6 @@
 
 <body id="conectar_pag">
 
-    <!-- Cabeçalho -->
     <header>
         <div id="cabecalho">
             <div class="logo"></div>
@@ -19,9 +18,8 @@
                 <a href="conectar.html">Voltar</a>
                 <a href="index.html">Home</a>
             </nav>
-            
-            <button class="menu-hamburguer" aria-label="Abrir Menu">
-                &#9776; </button>
+
+            <button class="menu-hamburguer" aria-label="Abrir Menu">&#9776;</button>
 
             <nav class="menu-mobile">
                 <a href="conectar.html">Voltar</a>
@@ -31,11 +29,10 @@
         </div>
     </header>
 
-    <!-- Conteudo do programa -->
-    <main  class="radio-selection-section">
-        
+    <main class="radio-selection-section">
+
         <h1 class="page-title">Escolha o Seu Canal de Rock</h1>
-        
+
         <div class="channel-selector">
             <button id="btn-casa" class="btn-channel active" data-channel="casa">🏠 Rádio Casa</button>
             <button id="btn-rua" class="btn-channel" data-channel="rua">🛣️ Rádio Rua</button>
@@ -57,37 +54,28 @@
 
     </main>
 
-    <!-- Rodapé -->
     <footer>
-
         <p id="texto_rodape">&copy; 2025 GarageB. Todos os direitos reservados.</p>
-
     </footer>
 
-    <!-- Menu Hamburguer -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const menuHamburguer = document.querySelector('.menu-hamburguer');
             const menuMobile = document.querySelector('.menu-mobile');
-
-            menuHamburguer.addEventListener('click', () => {
-                menuMobile.classList.toggle('active');
-            });
-
-            // Fecha o menu móvel ao clicar em um link (para facilitar a navegação)
+            menuHamburguer.addEventListener('click', () => { menuMobile.classList.toggle('active'); });
             document.querySelectorAll('.menu-mobile a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuMobile.classList.remove('active');
-                });
+                link.addEventListener('click', () => { menuMobile.classList.remove('active'); });
             });
         });
     </script>
+    
+    <script src="/socket.io/socket.io.js"></script> 
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const socket = io(); 
+
             // Elementos DOM
-            const btnCasa = document.getElementById('btn-casa');
-            const btnRua = document.getElementById('btn-rua');
             const audioPlayer = document.getElementById('audio-player');
             const channelTitle = document.getElementById('channel-title');
             const channelDescription = document.getElementById('channel-description');
@@ -95,59 +83,126 @@
             const streamUrlSpan = document.getElementById('stream-url');
             const channelButtons = document.querySelectorAll('.btn-channel');
 
-            // Configuração das Rádios (Links de streaming são SIMULADOS)
+            const STREAM_URL = "http://localhost:3000/audio/stream";
+            let currentChannel = 'casa'; 
+
             const radios = {
-                casa: {
-                    title: "Rádio Casa: Classic Rock",
-                    description: "O melhor do Classic Rock, Blues e Folk. Música para relaxar.",
-                    // Substitua 'SUA_URL_STREAMING_CASA' pelo link real do seu streaming
-                    stream: "SUA_URL_STREAMING_CASA_MP3_OU_M3U8" 
-                },
-                rua: {
-                    title: "Rádio Rua: Hard & Heavy",
-                    description: "Hard Rock, Metal e Grunge. Para aumentar o volume e pegar a estrada!",
-                    // Substitua 'SUA_URL_STREAMING_RUA' pelo link real do seu streaming
-                    stream: "SUA_URL_STREAMING_RUA_MP3_OU_M3U8"
-                }
+                casa: { title: "Rádio Casa: Classic Rock (GarageB Stream)", description: "Stream de Áudio contínuo da banda.", stream: STREAM_URL },
+                rua: { title: "Rádio Rua: Hard & Heavy (GarageB Stream)", description: "Stream de Áudio contínuo da banda.", stream: STREAM_URL }
             };
 
-            // Função principal para carregar o canal
             function loadChannel(channelKey) {
                 const radio = radios[channelKey];
                 
-                // 1. Atualiza o player de áudio
-                audioPlayer.src = radio.stream;
-                audioPlayer.load(); // Carrega o novo stream
-                statusMessage.textContent = 'Pronto para tocar.';
+                if (audioPlayer.src !== radio.stream) {
+                    audioPlayer.src = radio.stream;
+                    audioPlayer.load(); 
+                }
+                
+                channelTitle.textContent = radios[channelKey].title;
+                channelDescription.textContent = radios[channelKey].description;
+                streamUrlSpan.textContent = radios[channelKey].stream; 
 
-                // 2. Atualiza os metadados
-                channelTitle.textContent = radio.title;
-                channelDescription.textContent = radio.description;
-                streamUrlSpan.textContent = radio.stream; 
-
-                // 3. Atualiza o estado dos botões (CSS)
                 channelButtons.forEach(btn => btn.classList.remove('active'));
                 document.getElementById('btn-' + channelKey).classList.add('active');
+
+                currentChannel = channelKey;
+                statusMessage.textContent = 'Carregado. Aguardando comando.';
+
+                audioPlayer.play().catch(error => { console.warn("Play automático bloqueado."); });
             }
 
-            // Event Listeners para os botões
-            btnCasa.addEventListener('click', () => loadChannel('casa'));
-            btnRua.addEventListener('click', () => loadChannel('rua'));
+            // --- COMUNICAÇÃO SOCKET.IO (RECEBIMENTO) ---
 
-            // Atualiza o status do player (opcional, mas bom para feedback)
+            // 0. Recebe o estado inicial
+            socket.on('initial_state', (state) => {
+                loadChannel(state.channel);
+                audioPlayer.play().catch(error => { statusMessage.textContent = 'Aperte PLAY ou aguarde comando do Admin!'; });
+            });
+
+            // 1. Recebe o comando de MUDANÇA DE MÚSICA
+            socket.on('song_changed', (newSong) => {
+                const wasPlaying = !audioPlayer.paused;
+                
+                audioPlayer.src = STREAM_URL; 
+                audioPlayer.load();
+                
+                if(wasPlaying) {
+                    // O Play será executado pelo comando remoto logo em seguida (remote_playback_control)
+                    statusMessage.textContent = `🎶 NOVA MÚSICA: ${newSong}! Aguardando Play Remoto.`;
+                } else {
+                    statusMessage.textContent = `Música trocada para ${newSong}. Pressione Play.`;
+                }
+                alert(`O Radialista trocou a música para: ${newSong}`);
+            });
+            
+            // 2. Recebe o comando de SINCRONIA FORÇADA
+            socket.on('force_sync', (syncTime) => {
+                const wasPaused = audioPlayer.paused;
+                
+                audioPlayer.currentTime = syncTime; 
+                
+                if (!wasPaused) { 
+                     audioPlayer.play().catch(error => { console.warn("Play após sincronia bloqueado."); });
+                } else {
+                     statusMessage.textContent = 'Sincronia ajustada. Player permanece pausado.';
+                }
+                
+                statusMessage.textContent = `📡 SINCRONIZADO para ${Math.floor(syncTime)}s!`;
+                alert(`O Radialista sincronizou o stream.`);
+            });
+            
+            // 3. Recebe o comando de Foco de Canal
+            socket.on('new_channel', (channel) => {
+                 loadChannel(channel);
+                 alert(`Atenção: A rádio mudou de foco para o canal ${channel.toUpperCase()}`);
+            });
+
+            // 4. Recebe o comando de Play/Pause REMOTO (CRÍTICO PARA CELULAR)
+            socket.on('remote_playback_control', (action) => {
+                if (action === 'play') {
+                    audioPlayer.play().catch(error => {
+                        console.warn("Play Remoto Bloqueado. Usuário deve clicar.");
+                        statusMessage.textContent = '▶️ O Admin iniciou o Play. Clique no Play para ouvir!';
+                    });
+                } else if (action === 'pause') {
+                    audioPlayer.pause();
+                    statusMessage.textContent = '⏸️ Pausado pelo Admin.';
+                }
+            });
+
+            // 5. Recebe o comando de REINICIAR STREAM
+            socket.on('stream_restarted', (channel) => {
+                if (currentChannel === channel) {
+                     audioPlayer.load(); 
+                     statusMessage.textContent = 'Recarregado pelo Radialista. Tocando...';
+                     audioPlayer.play();
+                }
+            });
+
+            // --- EVENT LISTENERS NATIVOS ---
+            document.getElementById('btn-casa').addEventListener('click', () => loadChannel('casa'));
+            document.getElementById('btn-rua').addEventListener('click', () => loadChannel('rua'));
+
             audioPlayer.addEventListener('play', () => {
                 statusMessage.textContent = 'Tocando agora...';
+                if (audioPlayer.currentTime < 1) { socket.emit('sync_request', 0); }
             });
-            audioPlayer.addEventListener('pause', () => {
-                statusMessage.textContent = 'Pausado.';
-            });
+            
+            audioPlayer.addEventListener('pause', () => statusMessage.textContent = 'Pausado.');
+            
             audioPlayer.addEventListener('error', () => {
-                statusMessage.textContent = 'Erro ao carregar o stream. Link inválido?';
+                statusMessage.textContent = '❌ Erro no Stream. Tente dar Play ou peça ao Admin para Recarregar.';
                 statusMessage.style.color = 'red';
             });
-
-            // Carrega o canal padrão ao iniciar
-            loadChannel('casa');
+            
+            audioPlayer.addEventListener('ended', () => {
+                audioPlayer.load();
+                audioPlayer.play();
+                statusMessage.textContent = 'Tocando agora... (Repetindo Stream)';
+            });
+            
+            loadChannel(currentChannel);
         });
     </script>
 
