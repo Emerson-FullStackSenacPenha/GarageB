@@ -145,12 +145,12 @@ body {
     
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     gap: 1%;
     font-size: 13px;
     flex-wrap: wrap;
+    width: 100%;
     
-
 }
 
 .foto-box {
@@ -307,7 +307,7 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 50px;
+    padding: 5px;
     width: 100%;
 }
 
