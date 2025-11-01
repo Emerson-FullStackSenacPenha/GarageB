@@ -145,19 +145,24 @@ body {
     
     display: flex;
     align-items: center;
-    gap: 5vw;
+    justify-content: center;
+    gap: 1%;
     font-size: 13px;
+    flex-wrap: wrap;
+    
 
 }
 
 .foto-box {
 
+    margin-top: 40px;
     width: 150px;
     height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
     font-weight: bold;
     transition: linear;
 }
@@ -209,14 +214,17 @@ body {
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    
 
 }
 
 .instagram-gallery {
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1vw;
+
 
 }
 
@@ -227,6 +235,71 @@ body {
 
 }
 
+#contratar {
+
+    background-color:rgb(0, 0, 0);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+#mensagem_contratar {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+}
+
+#texto_contratar {
+
+    color: var(--cor_texto);
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+#botao_contratar {
+
+    height: 50px;
+    width: 250px;
+    background-color: #25d366;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    
+
+}
+
+#botao_contratar:hover {
+
+    color: #25d366;
+    background-color: white;
+    
+    box-shadow: 0px 0px 20px #25d366;
+    
+}
+
+#logo_contratar {
+
+    background-image: url(../img/logo.jpg);
+    height: 150px;
+    width: 150px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+}
+
 footer {
 
     background-color: black;
@@ -234,13 +307,7 @@ footer {
     justify-content: space-around;
     align-items: center;
     height: 50px;
-
-}
-
-.social-icons a {
-
-    text-decoration: none;
-    color: var(--cor_texto)
+    width: 100%;
 }
 
 #texto_rodape {
@@ -328,7 +395,16 @@ footer {
         justify-content: space-between;
     }
 
+    #contratar {
+
+    background-color:rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 20px;
+    align-items: center;
     
+}
 
 }
 
@@ -349,5 +425,11 @@ footer {
         grid-template-columns: 1fr;
         padding: 0 10px;
     }
+
+    .sobre-secao p {
+
+    font-size: 15px;
+
+}
 
 }
