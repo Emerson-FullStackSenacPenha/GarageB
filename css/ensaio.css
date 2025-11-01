@@ -67,7 +67,12 @@ body {
 }
 /* Main do site */
 
+main {
 
+    background-color: #111;
+    min-height: 95.8vh;
+
+}
 
 /* Rodapé */
 footer {
