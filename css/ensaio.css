@@ -71,6 +71,28 @@ main {
 
     background-color: #111;
     min-height: 95.8vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    color: white;
+
+}
+
+tbody {
+
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+}
+
+.silver {
+
+    background-color: #222222;
 
 }
 
@@ -175,7 +197,5 @@ footer {
     .sobre-secao p {
 
     font-size: 15px;
-
-}
 
 }
