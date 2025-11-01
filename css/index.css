@@ -37,8 +37,6 @@ body {
 
 }
 
-/* O restante dos estilos de .login-form, .form-group, etc. devem estar no seu CSS também. */
-
 #cabecalho {
 
     background-color: black;
@@ -92,6 +90,12 @@ body {
     object-fit: cover;
     object-position: top;
     display: block;
+}
+
+#foto_logo {
+
+    object-position: center;
+
 }
 
 .slider-container {
@@ -245,14 +249,10 @@ footer {
 
 }
 
-/* --- Novo CSS para Responsividade (Menu Hambúrguer) --- */
-
-/* Esconde o menu hamburguer e o menu mobile por padrão no desktop */
 .menu-hamburguer, .menu-mobile {
     display: none;
 }
 
-/* Estilo do ícone hambúrguer quando ativo (Mobile) */
 .menu-hamburguer {
     background: none;
     border: none;
@@ -262,7 +262,6 @@ footer {
     margin-right: 15px;
 }
 
-/* Estilo do menu móvel (lateral) */
 .menu-mobile {
     position: fixed;
     top: 50px; /* Abaixo do cabeçalho */
@@ -280,7 +279,6 @@ footer {
     transition: transform 0.3s ease-in-out;
 }
 
-/* O Menu mobile é exibido quando a classe 'active' é adicionada via JS */
 .menu-mobile.active {
     transform: translateX(0);
 }
@@ -294,8 +292,6 @@ footer {
     text-align: left;
 }
 
-/* Estilos de responsividade para a Galeria e Integrantes */
-/* Estilos de responsividade para a Galeria e Integrantes */
 @media (max-width: 768px) {
     
     /* Oculta o menu de desktop e mostra o menu hamburguer */
@@ -354,217 +350,4 @@ footer {
         padding: 0 10px;
     }
 
-}
-
-/* --- CSS para a Página do Player (player.html) --- */
-
-.radio-player-section {
-    flex-grow: 1; 
-    padding-top: 80px;
-    padding-bottom: 40px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.channel-selector {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.btn-channel {
-    background-color: #eee;
-    color: #333;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-}
-
-.btn-channel:hover {
-    background-color: #ddd;
-}
-
-.btn-channel.active {
-    background-color: black;
-    color: var(--cor_texto); /* Cor de texto definida na root */
-    border-color: black;
-    font-weight: bold;
-}
-
-.player-container {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 30px;
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.player-container h2 {
-    margin-bottom: 10px;
-    color: black;
-}
-
-.player-container p {
-    color: #666;
-    margin-bottom: 20px;
-}
-
-#audio-player {
-    width: 100%;
-    margin-top: 15px;
-}
-
-.stream-info {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px dashed #ccc;
-    text-align: left;
-    font-size: 0.9em;
-    color: #555;
-}
-
-#status-message {
-    font-weight: bold;
-    color: green; /* Status inicial */
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-    .channel-selector {
-        flex-direction: column;
-        width: 90%;
-    }
-    .btn-channel {
-        width: 100%;
-    }
-}
-
-/* --- CSS para a Página do Painel Admin (admin.html) --- */
-
-.admin-panel-section {
-    flex-grow: 1;
-    padding-top: 80px;
-    padding-bottom: 40px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Alinhamento superior, pois o conteúdo é grande */
-    justify-content: flex-start; 
-}
-
-.channel-management-container {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 90%;
-    max-width: 1000px;
-    margin-bottom: 30px;
-}
-
-.management-box {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 30px;
-    width: 100%;
-    max-width: 450px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.management-box h3 {
-    font-size: 1.6em;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-}
-
-.status-indicator {
-    font-weight: bold;
-    padding: 2px 8px;
-    border-radius: 4px;
-}
-
-.status-indicator.active {
-    background-color: #4CAF50; /* Verde */
-    color: white;
-}
-
-.status-indicator.maintenance {
-    background-color: #FFC107; /* Amarelo */
-    color: #333;
-}
-
-.playlist-info {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #eee;
-}
-
-.playlist-info h4 {
-    margin-bottom: 10px;
-    color: #333;
-    font-size: 1.1em;
-}
-
-.playlist-info ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.playlist-info li {
-    padding: 5px 0;
-    border-bottom: 1px dotted #e0e0e0;
-}
-
-.btn-action {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: opacity 0.2s;
-}
-
-.btn-action.primary {
-    background-color: black;
-    color: var(--cor_texto);
-}
-
-.btn-action.warning {
-    background-color: #B53F3F; /* Um vermelho/marrom (cor do admin do conectar) */
-    color: white;
-    margin-left: 10px;
-}
-
-.btn-action:hover {
-    opacity: 0.9;
-}
-
-.admin-note {
-    font-size: 0.9em;
-    color: #888;
-    text-align: center;
-}
-
-/* Responsividade Admin */
-@media (max-width: 768px) {
-    .channel-management-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    .management-box {
-        max-width: 90%;
-    }
 }
