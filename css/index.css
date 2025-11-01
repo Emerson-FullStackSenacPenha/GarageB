@@ -410,5 +410,27 @@ footer {
 }
 
 @media (max-width: 480px) {
+    /* Ajusta o grid do Instagram para 1 coluna em telas muito pequenas */
+    .instagram-gallery {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+
+    /* Ajuste de altura Específico para Mobile */
+    .slider-container {
+        height: 40vh; /* Altura reduzida para mobile (40% da altura da tela) */
+    }
     
+    /* Ajusta o grid do Instagram para 1 coluna em telas muito pequenas */
+    .instagram-gallery {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+
+    .sobre-secao p {
+
+    font-size: 15px;
+
+}
+
 }
